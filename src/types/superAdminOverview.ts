@@ -1,0 +1,103 @@
+export interface SuperAdminOverviewData {
+  id: number;
+  licencas: any[];
+  motoristas: Array<{
+    id: number;
+    id_user: number;
+    id_empresa: number;
+    phoneNumber: string;
+    birthDate: string;
+    address: string;
+    nationality: string;
+    cartaoCidadao: string;
+    validadeCartaoCidadao: string;
+    arquivoCartaoCidadao: string | null;
+    registroCriminal: string;
+    validadeRegistroCriminal: string;
+    arquivoRegistroCriminal: string | null;
+    licencaIMT: string;
+    validadeLicencaIMT: string;
+    arquivoLicencaIMT: string | null;
+    cartaConducao: string;
+    validadeCartaConducao: string;
+    arquivoCartaConducao: string | null;
+    bankName: string;
+    ibanNumber: string;
+    mbwayNumber: string;
+    workShift: string;
+    status: string;
+    isOnline: boolean;
+  }>;
+  viaturas: Array<{
+    id: number;
+    placa: string;
+    modelo: string;
+    marca: string;
+    motorizacao: string;
+    anoFabricacao: number;
+    kmInicial: number;
+    tipoCombustivel: string;
+    dataVencimentoIUC: string;
+    capacidadeViatura: string;
+    documentoVeiculoDUA: string | null;
+    foto: string | null;
+    cor: string | null;
+    id_empresa: number;
+  }>;
+  dispositivos: Array<{
+    id: number;
+    id_empresa: number;
+    id_motorista: number | null;
+    identificacao: string;
+    status: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }>;
+  usuarios: Array<{
+    id: number;
+    name: string;
+    photo: string | null;
+    email: string;
+    role: string;
+    id_empresa: number;
+    first_time: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }>;
+  controleUbers: Array<{
+    id: number;
+    id_user: number;
+    id_device: string;
+    placa: string;
+    dt_horario_inicio: string;
+    km_inicio: string;
+    dt_horario_pausa: string | null;
+    dt_horario_retorno_pausa: string | null;
+    motivo_pausa: string | null;
+    km_final: string | null;
+    dt_horario_final: string | null;
+    avaria: string | null;
+    abastecimentos: any[];
+    gastosGanhosUber?: {
+      id: number;
+      id_controle: number;
+      valor_uber: string;
+      vl_gorjeta_uber: string;
+      vl_portagem_uber: string;
+      qtd_horas_uber: string;
+      qtd_viagens_uber: number;
+      createdAt: string;
+      updatedAt: string;
+    };
+    gastosGanhosBolt?: {
+      id: number;
+      id_controle: number;
+      valor_bolt: string;
+      vl_gorjeta_bolt: string;
+      qtd_horas_bolt: string;
+      qtd_viagens_bolt: number;
+      createdAt: string;
+      updatedAt: string;
+    };
+  }>;
+}
