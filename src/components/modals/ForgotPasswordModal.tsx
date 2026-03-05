@@ -48,9 +48,16 @@ export function ForgotPasswordModal({
       await forgotPassword({ email: data.email }).unwrap();
       toast.success(t("login.emailSent"));
       onSuccess(data.email);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Forgot password error:", error);
-      setApiError(t("login.unexpectedError"));
+      const errorMessage = error.data?.message;
+      if (typeof errorMessage === "string") {
+        setApiError(errorMessage);
+      } else if (typeof errorMessage === "object" && errorMessage?.message) {
+        setApiError(errorMessage.message);
+      } else {
+        setApiError(t("login.unexpectedError"));
+      }
     }
   };
 

@@ -54,9 +54,16 @@ export function ResetPasswordModal({
         password: data.password,
       }).unwrap();
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Reset password error:", error);
-      setApiError(t("login.unexpectedError"));
+      const errorMessage = error.data?.message;
+      if (typeof errorMessage === "string") {
+        setApiError(errorMessage);
+      } else if (typeof errorMessage === "object" && errorMessage?.message) {
+        setApiError(errorMessage.message);
+      } else {
+        setApiError(t("login.unexpectedError"));
+      }
     }
   };
 
